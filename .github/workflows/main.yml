@@ -45,11 +45,26 @@ jobs:
           push: true
           tags: mavico00/infra_actions:latest
 
-
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build_and_push_to_docker_hub
+    steps:
+    - name: executing remote ssh commands to deploy
+      uses: appleboy/ssh-action@master
+      with:
+        # host: ${{ secrets.HOST }}
+        host: 51.250.94.163
+        # username: ${{ secrets.USER }}
+        username: mavico
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          sudo docker pull mavico00/infra_actions
+          sudo docker stop $(sudo docker ps -a -q)
+          sudo docker run --rm -d -p 5000:5000 mavico00/infra_actions
 
   send_message:
     runs-on: ubuntu-latest
-    needs: build_and_push_to_docker_hub
+    needs: deploy
     steps:
     - name: send message
       uses: appleboy/telegram-action@master
