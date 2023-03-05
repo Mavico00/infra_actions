@@ -44,12 +44,13 @@ jobs:
       - name: Login to Docker 
         uses: docker/login-action@v1 
         with:
-          # username: mavico00
-          # password: 9tmVfRbvbxp5ce!
+          username: mavico00
+          password: 9tmVfRbvbxp5ce!
+        # secrets:
           # username: "${{ secrets.DOCKER_USERNAME }}"
           # password: "${{ secrets.DOCKER_PASSWORD }}"
-          DOCKER_USERNAME: "${{ secrets.DOCKER_USERNAME }}"
-          DOCKER_PASSWORD: "${{ secrets.DOCKER_PASSWORD }}"
+          # DOCKER_USERNAME: "${{ secrets.DOCKER_USERNAME }}"
+          # DOCKER_PASSWORD: "${{ secrets.DOCKER_PASSWORD }}"
       - name: Push to Docker Hub
         uses: docker/build-push-action@v2 
         with:
