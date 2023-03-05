@@ -61,11 +61,11 @@ jobs:
     - name: executing remote ssh commands to deploy
       uses: appleboy/ssh-action@master
       with:
-        # host: ${{ secrets.HOST }}
-        host: 51.250.94.163
-        # username: ${{ secrets.USER }}
-        username: mavico00
-        key: ${{ secrets.SSH_KEY }}
+        INPUT_HOST: ${{ secrets.HOST }}
+        # host: 51.250.94.163
+        INPUT_USERNAME: ${{ secrets.USER }}
+        # username: Mavico00
+        INPUT_KEY: ${{ secrets.SSH_KEY }}
         # passphrase: "${{ secrets.PASSPHRASE }}" # Если ваш ssh-ключ защищён фразой-паролем
         script: |
           # Выполняет pull образа с DockerHub
